@@ -33,3 +33,23 @@ def example_s3_bronze_asset() -> Output:
         value={"hoge": "fuga"},
         tags={"start_url_hostname": "example.com"},
     )
+
+@asset(
+    deps=[example_s3_bronze_asset],
+    kinds={"s3", "silver", "python"},
+)
+def example_s3_silver_asset(
+    context: AssetExecutionContext,
+    example_s3_bronze_asset: Dict[str, Any],
+) -> Output:
+    """Example asset that transforms the bronze asset into a silver asset."""
+
+    # Example transformation logic
+    transformed_data = {
+        "piyo": example_s3_bronze_asset["hoge"],
+        "timestamp": datetime.datetime.now(tz=zoneinfo.ZoneInfo("Asia/Tokyo")).isoformat(),
+    }
+
+    return Output(
+        value=transformed_data,
+    )
