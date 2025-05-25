@@ -34,6 +34,9 @@ def example_s3_bronze_asset() -> Output:
         tags={"start_url_hostname": "example.com"},
     )
 
+class ExampleS3SilverConfig(Config):
+    user_id: str
+
 @asset(
     deps=[example_s3_bronze_asset],
     kinds={"s3", "silver", "python"},
@@ -41,6 +44,7 @@ def example_s3_bronze_asset() -> Output:
 def example_s3_silver_asset(
     context: AssetExecutionContext,
     example_s3_bronze_asset: Dict[str, Any],
+    config: ExampleS3SilverConfig,
 ) -> Output:
     """Example asset that transforms the bronze asset into a silver asset."""
 
