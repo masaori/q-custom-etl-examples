@@ -5,6 +5,9 @@ import datetime
 import json
 import os
 import zoneinfo
+
+# TODO: skdとしてインポートする
+from abc import ABC, abstractmethod
 from typing import Any, Dict, List
 from urllib.parse import urlparse
 from uuid import UUID
@@ -23,10 +26,32 @@ from dagster import (
 from dagster_aws.pipes import PipesECSClient, PipesGlueClient, PipesLambdaClient
 
 
+class QDevClient(ABC):
+    """
+    Base class for QDev client operations.
+    This class defines the interface for extracting, transforming, and indexing data.
+    Subclasses should implement the `transform` and `index` methods.
+    """
+    @abstractmethod
+    def extract(self, type: str) -> Output:
+        pass
+    
+    @abstractmethod
+    def transform(self) -> Output:
+        pass
+    
+    @abstractmethod
+    def index(self) -> Output:
+        pass
+
+
 @asset(
+    deps=["crawled_files"],
     kinds={"s3", "bronze", "python"},
 )
-def example_s3_bronze_asset() -> Output:
+def example_s3_bronze_asset(
+    qdev_client: QDevClient,
+) -> Output:
     """Example asset that reads from S3 and returns a list of dictionaries."""
 
     return Output(
@@ -44,6 +69,7 @@ class ExampleS3SilverConfig(Config):
 def example_s3_silver_asset(
     context: AssetExecutionContext,
     example_s3_bronze_asset: Dict[str, Any],
+    qdev_client: QDevClient,
     config: ExampleS3SilverConfig,
 ) -> Output:
     """Example asset that transforms the bronze asset into a silver asset."""
