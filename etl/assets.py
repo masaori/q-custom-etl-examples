@@ -79,3 +79,15 @@ def example_s3_silver_asset(
     return Output(
         value=transformed_data,
     )
+
+@asset(
+    deps=["example_s3_silver_asset"],
+    kinds={"s3", "gold", "python"},
+)
+def example_s3_glod_asset() -> Output:
+    """Example asset that reads from S3 and returns a list of dictionaries."""
+
+    return Output(
+        value={"hoge": "fuga"},
+        tags={"start_url_hostname": "example.com"},
+    )
