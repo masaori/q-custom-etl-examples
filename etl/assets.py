@@ -67,6 +67,7 @@ class ExampleS3SilverConfig(Config):
 def example_s3_silver_asset(
     context: AssetExecutionContext,
     example_s3_bronze_asset: Dict[str, Any],
+    qdev_client: QDevClient,
 ) -> Output:
     """Example asset that transforms the bronze asset into a silver asset."""
 
@@ -76,6 +77,7 @@ def example_s3_silver_asset(
         "timestamp": datetime.datetime.now(tz=zoneinfo.ZoneInfo("Asia/Tokyo")).isoformat(),
     }
 
+<<<<<<< HEAD
     return Output(
         value=transformed_data,
     )
@@ -91,3 +93,9 @@ def example_s3_glod_asset() -> Output:
         value={"hoge": "fuga"},
         tags={"start_url_hostname": "example.com"},
     )
+=======
+    return qdev_client.transform(
+        context=context,
+        script_path='etl/transform/silver.py'
+    )
+>>>>>>> 7b0a9c8 (wip)
