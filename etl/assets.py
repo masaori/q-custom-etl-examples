@@ -46,7 +46,6 @@ class ExampleS3SilverConfig(Config):
 def example_s3_silver_asset(
     context: AssetExecutionContext,
     example_s3_bronze_asset: Dict[str, Any],
-    qdev_client: QDevClient,
 ) -> Output:
     """Example asset that transforms the bronze asset into a silver asset."""
 
