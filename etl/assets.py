@@ -25,28 +25,7 @@ from dagster import (
 )
 from dagster_aws.pipes import PipesECSClient, PipesGlueClient, PipesLambdaClient
 
-
-class QDevClient(ABC):
-    """
-    Base class for QDev client operations.
-    This class defines the interface for extracting, transforming, and indexing data.
-    Subclasses should implement the `transform` and `index` methods.
-    """
-    @abstractmethod
-    def extract(self, type: str) -> Output:
-        pass
-    
-    @abstractmethod
-    def transform(self) -> Output:
-        pass
-    
-    @abstractmethod
-    def index(self) -> Output:
-        pass
-
-
 @asset(
-    deps=["crawled_files"],
     kinds={"s3", "bronze", "python"},
 )
 def example_s3_bronze_asset() -> Output:
