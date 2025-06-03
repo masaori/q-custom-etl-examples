@@ -21,12 +21,13 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
 ]
-requires-python = ">=3.9"
+requires-python = ">=3.13"
 dependencies = [
     "dagster>=1.5.0",
     "dagster-aws>=0.21.0",
     "boto3>=1.26.0",
     "uuid6>=2023.5.2",
+    "dagster-qai",
 ]
 
 [project.optional-dependencies]
@@ -72,7 +73,7 @@ multi_line_output = 3
 line_length = 88
 
 [tool.mypy]
-python_version = "3.9"
+python_version = "3.13"
 warn_return_any = true
 warn_unused_configs = true
 disallow_untyped_defs = true
@@ -83,3 +84,6 @@ python_files = ["test_*.py"]
 python_classes = ["Test*"]
 python_functions = ["test_*"]
 addopts = "--cov=etl --cov-report=html --cov-report=term-missing"
+
+[tool.uv.sources]
+dagster-qai = { git = "https://github.com/qlonolink/qdev.git", subdirectory = "dagster", rev = "9a02ea7" }

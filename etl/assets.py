@@ -1,73 +1,22 @@
 """ETL Assets for Dagster pipeline."""
 
-import base64
-import datetime
-import json
-import os
-import zoneinfo
-
-# TODO: skdとしてインポートする
-from abc import ABC, abstractmethod
-from typing import Any, Dict, List
-from urllib.parse import urlparse
-from uuid import UUID
-
-import boto3  # type: ignore
-import uuid6
-from dagster import (
-    AssetExecutionContext,
-    AssetSpec,
-    Config,
-    DynamicPartitionsDefinition,
-    Output,
-    asset,
-    multi_asset,
-)
-from dagster_aws.pipes import PipesECSClient, PipesGlueClient, PipesLambdaClient
+from dagster import asset, AssetExecutionContext # type: ignore
+from dagster_qai import QaiDagsterClient, CrawlConfig
 
 @asset(
     kinds={"s3", "bronze", "python"},
 )
-def example_s3_bronze_asset() -> Output:
-    """Example asset that reads from S3 and returns a list of dictionaries."""
-
-    return Output(
-        value={"hoge": "fuga"},
-        tags={"start_url_hostname": "example.com"},
-    )
-
-class ExampleS3SilverConfig(Config):
-    user_id: str
-
-@asset(
-    deps=[example_s3_bronze_asset],
-    kinds={"s3", "silver", "python"},
-)
-def example_s3_silver_asset(
+def example_s3_bronze_asset(
     context: AssetExecutionContext,
-    example_s3_bronze_asset: Dict[str, Any],
-) -> Output:
-    """Example asset that transforms the bronze asset into a silver asset."""
-
-    # Example transformation logic
-    transformed_data = {
-        "piyo": example_s3_bronze_asset["hoge"],
-        "timestamp": datetime.datetime.now(tz=zoneinfo.ZoneInfo("Asia/Tokyo")).isoformat(),
-    }
-
-    return Output(
-        value=transformed_data,
-    )
-
-@asset(
-    deps=["example_s3_silver_asset"],
-    kinds={"s3", "gold", "python"},
-)
-def example_s3_glod_asset() -> Output:
+    qai_client: QaiDagsterClient,
+):
     """Example asset that reads from S3 and returns a list of dictionaries."""
-
-    return Output(
-        value={"hoge": "fuga"},
-        tags={"start_url_hostname": "example.com"},
+    
+    return qai_client.extract(
+        context=context, 
+        source_type="crawls",  
+        config=CrawlConfig(
+            user_id="hoge",
+            config_base64="hoge"
+        ),  
     )
-
