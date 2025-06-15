@@ -1,22 +1,24 @@
 """ETL Assets for Dagster pipeline."""
 
 from dagster import asset, AssetExecutionContext # type: ignore
-from dagster_qai import QaiDagsterClient, CrawlConfig
+from dagster_qint import QintClient, UrlListConfig
 
 @asset(
+    deps=[],
     kinds={"s3", "bronze", "python"},
 )
 def example_s3_bronze_asset(
     context: AssetExecutionContext,
-    qai_client: QaiDagsterClient,
+    qint_client: QintClient,
 ):
     """Example asset that reads from S3 and returns a list of dictionaries."""
-    
-    return qai_client.extract(
-        context=context, 
-        source_type="crawls",  
-        config=CrawlConfig(
-            user_id="hoge",
-            config_base64="hoge"
-        ),  
+
+    return qint_client.extract(
+        context=context,
+        source_type="url_list",
+        config=UrlListConfig(
+            url_list_id="example_s3_bronze_asset",
+            user_id="aaa",
+            urls=["https://example.com/data1.json", "https://example.com/data2.json"],
+        ),
     )
