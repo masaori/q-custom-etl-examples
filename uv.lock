@@ -244,7 +244,7 @@ wheels = [
 [[package]]
 name = "dagster-qint"
 version = "0.1.0"
-source = { git = "https://github.com/qlonolink/qdev.git?subdirectory=dagster%2Fsdk&rev=84dd0f0#84dd0f066fc81646df28697b84fd9e41944e809d" }
+source = { git = "https://github.com/qlonolink/qdev.git?subdirectory=dagster%2Fsdk&rev=7ead54e#7ead54eec7d205d60ea59da904dc206f9d155398" }
 dependencies = [
     { name = "dagster" },
     { name = "dagster-aws" },
@@ -774,7 +774,7 @@ requires-dist = [
     { name = "boto3", specifier = ">=1.26.0" },
     { name = "dagster", specifier = ">=1.5.0" },
     { name = "dagster-aws", specifier = ">=0.21.0" },
-    { name = "dagster-qint", git = "https://github.com/qlonolink/qdev.git?subdirectory=dagster%2Fsdk&rev=84dd0f0" },
+    { name = "dagster-qint", git = "https://github.com/qlonolink/qdev.git?subdirectory=dagster%2Fsdk&rev=7ead54e" },
     { name = "flake8", marker = "extra == 'dev'", specifier = ">=6.0.0" },
     { name = "isort", marker = "extra == 'dev'", specifier = ">=5.12.0" },
     { name = "mypy", marker = "extra == 'dev'", specifier = ">=1.0.0" },
