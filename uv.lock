@@ -244,7 +244,7 @@ wheels = [
 [[package]]
 name = "dagster-qbiz"
 version = "0.1.1"
-source = { git = "https://github.com/qlonolink/qbiz.git?subdirectory=dagster%2Fsdk&rev=e65064e8d07358b5aac14e9556dba543aba2971c#e65064e8d07358b5aac14e9556dba543aba2971c" }
+source = { git = "https://github.com/qlonolink/qbiz.git?subdirectory=dagster%2Fsdk&rev=e2b58f5#e2b58f55265aebfdd83217ff1e65810e2aa9f391" }
 dependencies = [
     { name = "dagster" },
     { name = "dagster-aws" },
@@ -774,7 +774,7 @@ requires-dist = [
     { name = "boto3", specifier = ">=1.26.0" },
     { name = "dagster", specifier = ">=1.5.0" },
     { name = "dagster-aws", specifier = ">=0.21.0" },
-    { name = "dagster-qbiz", git = "https://github.com/qlonolink/qbiz.git?subdirectory=dagster%2Fsdk&rev=e65064e8d07358b5aac14e9556dba543aba2971c" },
+    { name = "dagster-qbiz", git = "https://github.com/qlonolink/qbiz.git?subdirectory=dagster%2Fsdk&rev=e2b58f5" },
     { name = "flake8", marker = "extra == 'dev'", specifier = ">=6.0.0" },
     { name = "isort", marker = "extra == 'dev'", specifier = ">=5.12.0" },
     { name = "mypy", marker = "extra == 'dev'", specifier = ">=1.0.0" },

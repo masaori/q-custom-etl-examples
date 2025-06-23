@@ -86,4 +86,4 @@ python_functions = ["test_*"]
 addopts = "--cov=etl --cov-report=html --cov-report=term-missing"
 
 [tool.uv.sources]
-dagster-qbiz = { git = "https://github.com/qlonolink/qbiz.git", subdirectory = "dagster/sdk", rev = "e65064e8d07358b5aac14e9556dba543aba2971c" }
+dagster-qbiz = { git = "https://github.com/qlonolink/qbiz.git", subdirectory = "dagster/sdk", rev = "e2b58f5" }
