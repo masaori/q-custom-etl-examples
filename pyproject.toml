@@ -28,6 +28,7 @@ dependencies = [
     "boto3>=1.26.0",
     "uuid6>=2023.5.2",
     "dagster-qbiz",
+    "etl-qbiz",
 ]
 
 [project.optional-dependencies]
@@ -86,4 +87,5 @@ python_functions = ["test_*"]
 addopts = "--cov=etl --cov-report=html --cov-report=term-missing"
 
 [tool.uv.sources]
-dagster-qbiz = { git = "https://github.com/qlonolink/qbiz.git", subdirectory = "dagster/sdk", rev = "e2b58f5" }
+dagster-qbiz = { git = "https://github.com/qlonolink/qbiz.git", subdirectory = "dagster/sdk", rev = "a055d53" }
+etl-qbiz = { git = "https://github.com/qlonolink/qbiz.git", subdirectory = "etl/sdk", rev = "a055d53" }

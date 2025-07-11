@@ -243,8 +243,8 @@ wheels = [
 
 [[package]]
 name = "dagster-qbiz"
-version = "0.1.1"
-source = { git = "https://github.com/qlonolink/qbiz.git?subdirectory=dagster%2Fsdk&rev=e2b58f5#e2b58f55265aebfdd83217ff1e65810e2aa9f391" }
+version = "0.3.0"
+source = { git = "https://github.com/qlonolink/qbiz.git?subdirectory=dagster%2Fsdk&rev=a055d53#a055d536b8ff8fa6d3f8a9e7922128683832b2b6" }
 dependencies = [
     { name = "dagster" },
     { name = "dagster-aws" },
@@ -274,6 +274,15 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/08/12/9c22a58c0b1e29271051222d8906257616da84135af9ed167c9e28f85cb3/docstring_parser-0.16.tar.gz", hash = "sha256:538beabd0af1e2db0146b6bd3caa526c35a34d61af9fd2887f3a8a27a739aa6e", size = 26565, upload-time = "2024-03-15T10:39:44.419Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/d5/7c/e9fcff7623954d86bdc17782036cbf715ecab1bec4847c008557affe1ca8/docstring_parser-0.16-py3-none-any.whl", hash = "sha256:bf0a1387354d3691d102edef7ec124f219ef639982d096e26e3b60aeffa90637", size = 36533, upload-time = "2024-03-15T10:39:41.527Z" },
+]
+
+[[package]]
+name = "etl-qbiz"
+version = "0.1.0"
+source = { git = "https://github.com/qlonolink/qbiz.git?subdirectory=etl%2Fsdk&rev=a055d53#a055d536b8ff8fa6d3f8a9e7922128683832b2b6" }
+dependencies = [
+    { name = "pydantic" },
+    { name = "typing-extensions" },
 ]
 
 [[package]]
@@ -755,6 +764,7 @@ dependencies = [
     { name = "dagster" },
     { name = "dagster-aws" },
     { name = "dagster-qbiz" },
+    { name = "etl-qbiz" },
     { name = "uuid6" },
 ]
 
@@ -774,7 +784,8 @@ requires-dist = [
     { name = "boto3", specifier = ">=1.26.0" },
     { name = "dagster", specifier = ">=1.5.0" },
     { name = "dagster-aws", specifier = ">=0.21.0" },
-    { name = "dagster-qbiz", git = "https://github.com/qlonolink/qbiz.git?subdirectory=dagster%2Fsdk&rev=e2b58f5" },
+    { name = "dagster-qbiz", git = "https://github.com/qlonolink/qbiz.git?subdirectory=dagster%2Fsdk&rev=a055d53" },
+    { name = "etl-qbiz", git = "https://github.com/qlonolink/qbiz.git?subdirectory=etl%2Fsdk&rev=a055d53" },
     { name = "flake8", marker = "extra == 'dev'", specifier = ">=6.0.0" },
     { name = "isort", marker = "extra == 'dev'", specifier = ">=5.12.0" },
     { name = "mypy", marker = "extra == 'dev'", specifier = ">=1.0.0" },
